@@ -1,10 +1,8 @@
 # Kitty tabbed startup session
 #
-# Kitty tab with Neofetch
-#launch --env SHELL="/bin/zsh" --hold zsh -c "/opt/homebrew/bin/neofetch --kitty auto --source /Users/ronaldrecord/.local/share/icons/hicolor/512x512/apps/apple-logo.png"
-#launch --env SHELL="/bin/zsh" --hold zsh -c ~/bin/nfetch
+# Kitty tab with FastFetch
 new_tab
-launch --hold zsh -c /Users/ronaldrecord/bin/nfetch
+launch --hold zsh -c /Users/ronaldrecord/bin/ffetch
 enabled_layouts tall:bias=50;full_size=1
 layout tall
 
