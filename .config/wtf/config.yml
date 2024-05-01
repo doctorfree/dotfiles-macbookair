@@ -1,0 +1,599 @@
+wtf:
+  grid:
+    columns: [54, 54, 54, 54, 54, 54, 74]
+    rows: [12, 12, 12, 12, 12, 12, 12]
+  refreshInterval: 1
+  # Comment out or set to 'xterm-256color' if not using Kitty
+  term: 'xterm-kitty'
+  # openUrlUtil needed for Linux only if xdg-open is not working
+  # Comment out for Mac OS or to use xdg-open
+  # This execs whatever browser is configured in mimetypes
+  # To specify a character browser, set to 'w3m' or 'lynx'
+  openUrlUtil:
+    - 'gio'
+    - 'open'
+  mods:
+    github:
+      # Set environment variable WTF_GITHUB_TOKEN
+      # From https://github.com/settings/tokens
+      enabled: true
+      position:
+        top: 0
+        left: 0
+        height: 2
+        width: 1
+      refreshInterval: 300
+      customQueries:
+        othersPRs:
+          title: 'Others Pull Requests'
+          filter: 'is:open is:pr -author:doctorfree'
+        bugs:
+          title: 'Bugs'
+          filter: 'is:issue is:open label:bug'
+        issues:
+          title: 'Issues'
+          filter: 'is:issue is:open'
+      username: doctorfree
+      repositories:
+        - 'doctorfree/Asciiville'
+        - 'doctorfree/DoctorFreeScripts'
+        - 'doctorfree/DriveCommandLine'
+        - 'doctorfree/MirrorCommand'
+        - 'doctorfree/MusicPlayerPlus'
+        - 'doctorfree/RoonCommandLine'
+    weather:
+      # Set environment variable WTF_OWM_API_KEY
+      # From https://home.openweathermap.org
+      position:
+        top: 0
+        left: 1
+        height: 1
+        width: 1
+      cityids:
+        - 5393052
+        - 6173331
+        - 3128760
+        - 6167865
+        - 6176823
+      colors:
+        current: 'lightblue'
+      enabled: true
+      language: 'EN'
+      refreshInterval: 900
+      tempUnit: 'F'
+      useEmoji: true
+    digitalclock:
+      color: orange
+      enabled: true
+      font: bigfont
+      hourFormat: 12
+      title: 'Time'
+      position:
+        top: 1
+        left: 1
+        height: 1
+        width: 1
+      refreshInterval: 1s
+      type: 'digitalclock'
+    ipapi:
+      colors:
+        name: red
+        value: white
+      # Optional  
+      args:
+        - 'ip'
+        - 'isp'
+        - 'as'
+        - 'city'
+        - 'regionName'
+        - 'country'
+        - 'continent'
+        - 'coordinates'
+        - 'organization'
+        - 'timezone'
+        - 'reverseDNS'
+      enabled: true
+      position:
+        top: 0
+        left: 2
+        height: 1
+        width: 1
+      refreshInterval: 150s
+    ipinfo:
+      position:
+        top: 1
+        left: 2
+        height: 1
+        width: 1
+      colors:
+        name: red
+        value: white
+      enabled: true
+      refreshInterval: 150
+    security:
+      enabled: true
+      position:
+        top: 0
+        left: 3
+        height: 1
+        width: 1
+      refreshInterval: 3600
+    clocks:
+      enabled: true
+      position:
+        top: 1
+        left: 3
+        height: 1
+        width: 1
+      colors:
+        rows:
+          even: 'lightblue'
+          odd: 'white'
+      locations:
+        # From https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+        Santa Cruz: 'America/Los_Angeles'
+        Enid: 'America/Chicago'
+        London: 'Europe/London'
+        Singapore: 'Asia/Singapore'
+        Peru: 'America/Lima'
+        New Zealand: 'Pacific/Auckland'
+        New York: 'America/New_York'
+        UTC: 'Etc/UTC'
+      refreshInterval: 15
+      sort: 'chronological'
+    linux_subreddit:
+      enabled: true
+      numberOfPosts: 10
+      position:
+        top: 0
+        left: 4
+        height: 1
+        width: 3
+      refreshInterval: 15m
+      sortOrder: top
+      subreddit: 'linux'
+      topTimePeriod: month
+      type: subreddit
+    cli_subreddit:
+      enabled: true
+      numberOfPosts: 10
+      position:
+        top: 1
+        left: 4
+        height: 1
+        width: 3
+      refreshInterval: 15m
+      sortOrder: top
+      subreddit: 'commandline'
+      topTimePeriod: month
+      type: subreddit
+    prices_cryptolive:
+      enabled: true
+      title: 'Cryptocurrency Prices'
+      position:
+        top: 2
+        left: 0
+        height: 2
+        width: 1
+      updateInterval: 30
+      currencies:
+        ADA:
+          displayName: Cardano
+          to:
+            - USD
+        RNDR:
+          displayName: Render Token
+          to:
+            - USD
+        AGI:
+          displayName: SingularityNET
+          to:
+            - USD
+        COTI:
+          displayName: COTI
+          to:
+            - USD
+        GRT:
+          displayName: The Graph
+          to:
+            - USD
+        HNT:
+          displayName: Helium
+          to:
+            - USD
+      top:
+      colors:
+        from:
+          name: coral
+          displayName: grey
+        to:
+          name: white
+          price: green
+        top:
+          from:
+            name: grey
+            displayName: coral
+          to:
+            name: red
+            field: white
+            value: green
+      type: cryptolive
+    ada_cryptolive:
+      enabled: true
+      title: 'Cardano (ADA) Markets'
+      position:
+        top: 2
+        left: 1
+        height: 2
+        width: 1
+      updateInterval: 30
+      currencies:
+        ADA:
+          displayName: Cardano
+          to:
+            - USD
+      top:
+        ADA:
+          displayName: Cardano
+          limit: 5
+          to:
+            - USD
+      colors:
+        from:
+          name: coral
+          displayName: grey
+        to:
+          name: white
+          price: green
+        top:
+          from:
+            name: grey
+            displayName: coral
+          to:
+            name: red
+            field: white
+            value: green
+      type: cryptolive
+    rndr_cryptolive:
+      enabled: true
+      title: 'Render Token (RNDR) Markets'
+      position:
+        top: 2
+        left: 2
+        height: 2
+        width: 1
+      updateInterval: 30
+      currencies:
+        RNDR:
+          displayName: Render Token
+          to:
+            - USD
+      top:
+        RNDR:
+          displayName: Render Token
+          limit: 5
+          to:
+            - USD
+      colors:
+        from:
+          name: coral
+          displayName: grey
+        to:
+          name: white
+          price: green
+        top:
+          from:
+            name: grey
+            displayName: coral
+          to:
+            name: red
+            field: white
+            value: green
+      type: cryptolive
+    agix_cryptolive:
+      enabled: true
+      title: 'SingularityNET (AGI) Markets'
+      position:
+        top: 2
+        left: 3
+        height: 2
+        width: 1
+      updateInterval: 30
+      currencies:
+        AGI:
+          displayName: SingularityNET
+          to:
+            - USD
+      top:
+        AGI:
+          displayName: SingularityNET
+          limit: 5
+          to:
+            - USD
+      colors:
+        from:
+          name: coral
+          displayName: grey
+        to:
+          name: white
+          price: green
+        top:
+          from:
+            name: grey
+            displayName: coral
+          to:
+            name: red
+            field: white
+            value: green
+      type: cryptolive
+    coti_cryptolive:
+      enabled: true
+      title: 'COTI Markets'
+      position:
+        top: 2
+        left: 4
+        height: 2
+        width: 1
+      updateInterval: 30
+      currencies:
+        COTI:
+          displayName: COTI
+          to:
+            - USD
+      top:
+        COTI:
+          displayName: COTI
+          limit: 5
+          to:
+            - USD
+      colors:
+        from:
+          name: coral
+          displayName: grey
+        to:
+          name: white
+          price: green
+        top:
+          from:
+            name: grey
+            displayName: coral
+          to:
+            name: red
+            field: white
+            value: green
+      type: cryptolive
+    grt_cryptolive:
+      enabled: true
+      title: 'The Graph (GRT) Markets'
+      position:
+        top: 2
+        left: 5
+        height: 2
+        width: 1
+      updateInterval: 30
+      currencies:
+        GRT:
+          displayName: The Graph
+          to:
+            - USD
+      top:
+        GRT:
+          displayName: The Graph
+          limit: 5
+          to:
+            - USD
+      colors:
+        from:
+          name: coral
+          displayName: grey
+        to:
+          name: white
+          price: green
+        top:
+          from:
+            name: grey
+            displayName: coral
+          to:
+            name: red
+            field: white
+            value: green
+      type: cryptolive
+    hnt_cryptolive:
+      enabled: true
+      title: 'Helium (HNT) Markets'
+      position:
+        top: 2
+        left: 6
+        height: 2
+        width: 1
+      updateInterval: 30
+      currencies:
+        HNT:
+          displayName: Helium
+          to:
+            - USD
+      top:
+        HNT:
+          displayName: Helium
+          limit: 5
+          to:
+            - USD
+      colors:
+        from:
+          name: coral
+          displayName: grey
+        to:
+          name: white
+          price: green
+        top:
+          from:
+            name: grey
+            displayName: coral
+          to:
+            name: red
+            field: white
+            value: green
+      type: cryptolive
+    news:
+      type: hackernews
+      title: 'HackerNews'
+      enabled: true
+      numberOfStories: 10
+      position:
+        top: 4
+        left: 0
+        height: 1
+        width: 3
+      storyType: top
+      refreshInterval: 900
+    disks:
+      type: cmdrunner
+      cmd: 'df'
+      args: ['-h']
+      enabled: true
+      position:
+        top: 4
+        left: 3
+        height: 1
+        width: 2
+      refreshInterval: 3600
+    neofetch:
+      type: cmdrunner
+      args: ['--off']
+      cmd: 'neofetch'
+      pty: false
+      enabled: true
+      title: 'NeoFetch'
+      position:
+        top: 4
+        left: 5
+        height: 2
+        width: 1
+      refreshInterval: 3000
+    lunarphase:
+      enabled: true
+      language: 'en'
+      position:
+        top: 4
+        left: 6
+        height: 2
+        width: 1
+    feedreader:
+      enabled: true
+      feeds:
+      - https://rss.cbc.ca/lineup/topstories.xml
+      - https://www.santacruzsentinel.com/feed/
+      - https://www.mercurynews.com/location/california/bay-area/south-bay/santa-cruz-county/feed/
+      - https://goodtimes.sc/feed/atom/
+      - https://kion546.com/category/news/santa-cruz/feed/
+      - https://www.santacruzsentinel.com/news/local-news/feed/
+#     Subscription required to read articles
+#     - http://feeds.washingtonpost.com/rss/national
+#     - http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml
+      feedLimit: 10
+      position:
+        top: 5
+        left: 0
+        height: 1
+        width: 2
+      refreshInterval: 1h
+    resources:
+      type: resourceusage
+      enabled: true
+      position:
+        top: 5
+        left: 2
+        height: 1
+        width: 1
+      refreshInterval: 1
+    uptime:
+      type: cmdrunner
+      args: []
+      cmd: 'uptime'
+      enabled: true
+      position:
+        top: 5
+        left: 3
+        height: 1
+        width: 2
+      refreshInterval: 30
+    pokemon_static_1:
+      type: pokemon
+      enabled: false
+      pokemon_name: 'Celesteela'
+      random: false
+      colors:
+        name: blue
+        random_name: lightblue
+        value: yellow
+        random_value: cyan
+      # Optional  
+      attributes:
+        - 'pokemon_id'
+        - 'pokemon_name'
+        - 'genus'
+        - 'pokemon_types'
+        - 'experience'
+        - 'size'
+        - 'text'
+      language: 'en'
+      position:
+        top: 6
+        left: 0
+        height: 1
+        width: 2
+      staticInterval: 30
+      randomInterval: 10
+    pokemon_random:
+      type: pokemon
+      enabled: false
+      random: true
+      colors:
+        name: blue
+        random_name: lightblue
+        value: yellow
+        random_value: cyan
+      # Optional  
+      attributes:
+        - 'pokemon_id'
+        - 'pokemon_name'
+        - 'genus'
+        - 'pokemon_types'
+        - 'experience'
+        - 'size'
+        - 'text'
+      language: 'en'
+      position:
+        top: 6
+        left: 2
+        height: 1
+        width: 2
+      staticInterval: 30
+      randomInterval: 10
+    pokemon_static_2:
+      type: pokemon
+      enabled: false
+      pokemon_name: 'Bulbasaur'
+      random: false
+      colors:
+        name: blue
+        random_name: lightblue
+        value: yellow
+        random_value: cyan
+      # Optional  
+      attributes:
+        - 'pokemon_id'
+        - 'pokemon_name'
+        - 'genus'
+        - 'pokemon_types'
+        - 'experience'
+        - 'size'
+        - 'text'
+      language: 'en'
+      position:
+        top: 6
+        left: 4
+        height: 1
+        width: 2
+      staticInterval: 30
+      randomInterval: 10
