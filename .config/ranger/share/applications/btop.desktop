@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Monitor
+GenericName=System monitor
+Comment=Fast, feature-rich, system monitor
+Exec=/home/kasm-user/.local/kitty.app/bin/kitty --session /home/kasm-user/.config/kitty/sessions/btop --title 'Btop++ System Monitor'
+Icon=/home/kasm-user/.local/share/icons/hicolor/256x256/apps/btop.png
+Categories=System;TerminalEmulator;

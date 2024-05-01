@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Terminal Session
+GenericName=Terminal Emulator
+Comment=Fast, feature-rich, GPU based terminal
+Exec=/home/kasm-user/.local/kitty.app/bin/kitty --session /home/kasm-user/.config/kitty/sessions/startup --title 'Kitty Terminal Session'
+Icon=/home/kasm-user/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png
+Categories=System;TerminalEmulator;

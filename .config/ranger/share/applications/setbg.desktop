@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Select Background
+GenericName=Background
+Comment=Select and set the desktop background image
+Exec=/home/kasm-user/.local/kitty.app/bin/kitty --title 'Select Desktop Background' set_default_bg -c
+Icon=/home/kasm-user/.local/share/icons/hicolor/256x256/apps/ubuntu-jammy.png
+Categories=System;TerminalEmulator;

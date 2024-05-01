@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=Ranger File Manager
+GenericName=File Manager
+Comment=Launches the ranger file manager
+Exec=/home/kasm-user/.local/kitty.app/bin/kitty --session /home/kasm-user/.config/kitty/sessions/ranger --title 'Ranger File Manager'
+Icon=/home/kasm-user/.local/share/icons/hicolor/256x256/apps/ranger.png
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+MimeType=inode/directory;
+StartupNotify=true
+Categories=System;FileTools;FileManager

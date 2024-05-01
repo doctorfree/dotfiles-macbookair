@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Cheat Sheets
+Exec=/opt/Obsidian/obsidian --no-sandbox /home/kasm-user/Documents/cheat-sheets-plus/README.md
+Terminal=false
+Type=Application
+Icon=/home/kasm-user/.local/share/icons/hicolor/256x256/apps/help.png
+StartupWMClass=obsidian
+Comment=Cheat Sheets Plus
+MimeType=x-scheme-handler/obsidian;
+Categories=Office;
