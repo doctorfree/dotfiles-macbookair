@@ -1,5 +1,3 @@
-execute pathogen#infect()
-" General "{{{
 set nocompatible               " Be iMproved
 set backspace=indent
 set backspace+=eol
@@ -28,7 +26,6 @@ set shiftround                 " Round indent to multiple of 'shiftwidth'
 set tags=.git/tags;$HOME       " Consider the repo tags first, then
                                " Walk directory tree upto $HOME looking for tags
                                " Note `;` sets the stop folder. :h file-search
-
 set modeline
 set modelines=5                " Default numbers of lines to read for modeline instructions
 
@@ -131,7 +128,20 @@ if has('gui_running')
   set guifont=Terminus:h16
   end
 endif
-" "}}}
+
+if empty(glob('~/.vim/autoload/onedark.vim'))
+    silent !curl -fLo ~/.vim/autoload/onedark.vim --create-dirs
+                \ https://raw.githubusercontent.com/joshdick/onedark.vim/master/autoload/onedark.vim
+    silent !curl -fLo ~/.vim/colors/onedark.vim --create-dirs
+                \ https://raw.githubusercontent.com/joshdick/onedark.vim/master/colors/onedark.vim
+endif
+
+" Use Ctrl + H/J/K/L to switch between windows
+" If you use vim-terminals, refer to https://www.zhihu.com/question/278228687/answer/413375553
+noremap <C-H> :wincmd h<CR>
+noremap <C-L> :wincmd l<CR>
+noremap <C-J> :wincmd j<CR>
+noremap <C-K> :wincmd k<CR>
 
 " Using plug.vim Plugin manager from https://github.com/junegunn/vim-plug
 " Commands
@@ -143,7 +153,14 @@ endif
 " PlugDiff      Examine changes from the previous update and the pending changes
 " PlugSnapshot[!] [output path]  Generate script for restoring
 "                                the current snapshot of the plugins
-call plug#begin()
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
 " The default plugin directory will be as follows:
 "   - Vim (Linux/macOS): '~/.vim/plugged'
 "   - Vim (Windows): '~/vimfiles/plugged'
@@ -173,10 +190,13 @@ call plug#begin()
 " Plug '~/my-prototype-plugin'
 " Initialize plugin system
 "
+" Plug 'joshdick/onedark.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline' " Nifty status of your current file
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
 let g:bufferline_echo = 0
+let g:airline_powerline_fonts = 1
 " Remove the error and warning sections from Airline layout
 " let g:airline#extensions#default#layout = [
 "     \ [ 'a', 'b', 'c' ],
@@ -189,7 +209,8 @@ let g:airline#extensions#default#layout = [
 Plug 'vim-airline/vim-airline-themes' " Airline status themes
 " let g:airline_theme='simple'
 " let g:airline_theme='dark-powerline'
-let g:airline_theme='google_dark'
+  let g:airline_theme='onedark'
+" let g:airline_theme='google_dark'
 Plug 'tpope/vim-sleuth'        " Automatically adjust indentation
 " Make your Vim/Neovim as smart as VSCode
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -197,22 +218,22 @@ Plug 'tpope/vim-sleuth'        " Automatically adjust indentation
 Plug 'fladson/vim-kitty' " Kitty config syntax highlighting for vim
 " Colorschemes
 Plug 'flazz/vim-colorschemes'  " One stop shop for vim colorschemes
-Plug 'gmarik/ingretu'
+" Plug 'gmarik/ingretu'
 " Uncomment to play with colorschemes
 " Plug 'felixhummel/setcolors.vim' " Easily switch colorschemes
 " Language support
-Plug 'davidhalter/jedi-vim'    " Python autocompletion
-Plug 'klen/python-mode'        " Python IDE
-let g:pymode = 1
-let g:pymode_warnings = 1
-Plug 'fatih/vim-go'            " Go language support for Vim
-Plug 'yuezk/vim-js'            " Syntax highlighting for JavaScript and Flow.js
-Plug 'leafgarland/typescript-vim' " Typescript syntax
+" Plug 'davidhalter/jedi-vim'    " Python autocompletion
+" Plug 'klen/python-mode'        " Python IDE
+" let g:pymode = 1
+" let g:pymode_warnings = 1
+" Plug 'fatih/vim-go'            " Go language support for Vim
+" Plug 'yuezk/vim-js'            " Syntax highlighting for JavaScript and Flow.js
+" Plug 'leafgarland/typescript-vim' " Typescript syntax
 " To disable built-in Typescript indentation:
 " let g:typescript_indent_disable = 1
-Plug 'maxmellon/vim-jsx-pretty' " The React syntax highlighting and indenting
-Plug 'gmarik/snipmate.vim'      " TextMate's snippets features in Vim
-Plug 'gmarik/snipmate.snippets' " gmarik's custom snippet collection
+" Plug 'maxmellon/vim-jsx-pretty' " The React syntax highlighting and indenting
+" Plug 'gmarik/snipmate.vim'      " TextMate's snippets features in Vim
+" Plug 'gmarik/snipmate.snippets' " gmarik's custom snippet collection
 Plug 'gmarik/vim-markdown'      " Markdown syntax support for Vim
 Plug 'tpope/vim-git'            " Syntax, indent, and filetype for Git
 " Git integration - :Git (or just :G) calls any arbitrary Git command
@@ -237,7 +258,7 @@ Plug 'lambdalisue/suda.vim' " Alternative sudo for vim
 " :SudaWrite
 " Write contents to /etc/profile
 " :SudaWrite /etc/profile
-Plug 'bogado/file-line'        " Enable opening a file in a given line
+" Plug 'bogado/file-line'        " Enable opening a file in a given line
                                " vim index.html:20
                                " vim app/models/user.rb:1337
 Plug 'junegunn/vim-easy-align' " A simple, easy-to-use Vim alignment plugin
@@ -279,11 +300,52 @@ endif " has("autocmd")
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 endif
-if has("gui_running")
-  colorscheme ingretu
-else
-" colorscheme darkspectrum
-  colorscheme darktango
-endif
 set guifont=Inconsolata:h18
 let g:syntastic_html_checkers = []
+
+if has("gui_running")
+  colorscheme onedark
+else
+" colorscheme darkspectrum
+  colorscheme onedark
+" colorscheme darktango
+endif
+
+" ======= Toggle Transparency ========
+let t:is_transparent = 0
+hi Normal guibg=NONE ctermbg=NONE
+function! Toggle_transparent_background()
+  if t:is_transparent == 0
+    hi Normal guibg=#111111 ctermbg=black
+    let t:is_transparent = 1
+  else
+    hi Normal guibg=NONE ctermbg=NONE
+    let t:is_transparent = 0
+  endif
+endfunction
+nnoremap <C-x> :call Toggle_transparent_background()<CR>
+
+" ======= NERDTree config start ========
+" Open NERDTree on vim start
+" autocmd VimEnter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+" Open NERDTree with `vim`
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Open NERDTree with `vim <dir>`
+autocmd VIMEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_id") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+
+" Auto close if only NERDTree left
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" NERDTree arrows
+let g:NERDTreeDirArrowExpandable = '>'
+let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeShowHidden=1
+
+" Auto focus main window on launch
+" augroup NERD
+"     au!
+"     autocmd VimEnter * NERDTree
+"     autocmd VimEnter * wincmd p
+" augroup END
+
+" ======= NERDTree config end =======
