@@ -1,6 +1,37 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 #
+have_fetch=$(type -p ffetch)
+[ "${have_fetch}" ] || {
+  echo "Cannot locate ffetch. Exiting."
+  exit 1
+}
+have_zsh=$(type -p zsh)
+
+CONFDIR="${HOME}/.config/fastfetch"
+
 tput clear
 export TERM=xterm-kitty
 
-/opt/homebrew/bin/fastfetch $*
+# We use Bash for the array manipulation then Zsh for the exec
+configs=()
+for conf in ${CONFDIR}/config-[0-9][0-9].jsonc
+do
+  configs+=("${conf}")
+done
+
+# Seed random generator
+RANDOM=$$$(date +%s)
+USE_CONFIG=${configs[$RANDOM % ${#configs[@]}]}
+if [ "${USE_CONFIG}" ]; then
+  if [ "${have_zsh}" ]; then
+    exec zsh -c "fastfetch --config ${USE_CONFIG} $*"
+  else
+    fastfetch --config ${USE_CONFIG} $*
+  fi
+else
+  if [ "${have_zsh}" ]; then
+    exec zsh -c "fastfetch $*"
+  else
+    fastfetch $*
+  fi
+fi
