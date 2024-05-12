@@ -1,0 +1,200 @@
+Fastfetch is a neofetch-like tool for fetching system information and displaying them in a pretty way
+
+Usage: fastfetch <?options>
+
+Informative options:
+  -h, --help <?command>: Show this message, or help for a specific command
+  -v, --version: Show the full version of fastfetch
+      --version-raw: Show the raw version string (major.minor.patch)
+      --list-config-paths: List search paths of config files
+      --list-data-paths: List search paths of presets and logos
+      --list-logos: List available logos
+      --list-modules: List available modules
+      --list-presets: List presets fastfetch knows about
+      --list-features: List the supported features fastfetch was compiled with
+      --print-logos: Print available logos
+      --print-structure: Print the default structure
+
+Config options:
+  -c, --config <config>: Specify the config file or preset to be loaded
+      --gen-config <?path>: Generate a config file to specified path with options specified in the command line (if any)
+      --gen-config-force <?path>: Generate a config file to specified path. Overwrite the existing one
+
+General options:
+      --thread <?bool>: Use separate threads to send HTTP requests
+      --escape-bedrock <?bool>: On Bedrock Linux, whether to escape the bedrock jail
+      --wmi-timeout <num>: Set the timeout (ms) for WMI queries
+      --processing-timeout <num>: Set the timeout (ms) when waiting for child processes
+      --ds-force-drm <?enum>: Set if only DRM should be used to detect displays
+
+Logo options:
+  -l, --logo <logo>: Set the logo source
+      --logo-type <enum>: Set the type of the logo given in "--logo"
+      --logo-width <num>: Set the width of the logo (in characters), if it is an image
+      --logo-height <num>: Set the height of the logo (in characters), if it is an image
+      --logo-preserve-aspect-ratio <?bool>: Set if the logo should fill the specified width and height as much as possible without stretching
+      --logo-color-[1-9] <color>: Overwrite a color in the logo
+      --logo-padding <num>: Set the padding on the left and the right of the logo
+      --logo-padding-left <num>: Set the padding on the left of the logo
+      --logo-padding-right <num>: Set the padding on the right of the logo
+      --logo-padding-top <num>: Set the padding on the top of the logo
+      --logo-print-remaining <?bool>: Whether to print the remaining logo, if it has more lines than modules to display
+      --logo-separate <?bool>: If true, print modules at bottom of the logo
+      --logo-recache <?bool>: If true, regenerate image logo cache
+      --file <path>: Short for --logo-type file --logo <path>
+      --file-raw <path>: Short for --logo-type file-raw --logo <path>
+      --data <data>: Short for --logo-type data --logo <data>
+      --data-raw <data>: Short for --logo-type data-raw --logo <data>
+      --raw <path>: Short for --logo-type raw --logo <path>
+      --sixel <path>: Short for --logo-type sixel --logo <path>
+      --kitty <path>: Short for --logo-type kitty --logo <path>
+      --kitty-direct <path>: Short for --logo-type kitty-direct --logo <path>
+      --iterm <path>: Short for --logo-type iterm --logo <path>
+      --chafa <path>: Short for --logo-type chafa --logo <path>
+      --chafa-fg-only <?bool>: Produce character-cell output using foreground colors only
+      --chafa-symbols <str>: Specify character symbols to employ in final output
+      --chafa-canvas-mode <enum>: Determine how colors are used in the output
+      --chafa-color-space <enum>: Set color space used for quantization
+      --chafa-dither-mode <enum>: Set output dither mode (No effect with 24-bit color)
+
+Display options:
+  -s, --structure <structure>: Set the structure of the fetch
+      --stat <?bool>: Show time usage (in ms) for individual modules
+      --pipe <?bool>: Disable logo and all escape sequences
+      --color-keys <color>: Set the color of the keys
+      --color-title <color>: Set the color of the title
+      --color <color>: Set the color of both the keys and title
+      --key-width <num>: Align the width of keys to <num> characters
+      --bright-color <?bool>: Set if the keys, title and ASCII logo should be printed in bright color
+      --separator <str>: Set the separator between key and value
+      --set <key=value>: Hard set the value of a key
+      --set-keyless <key=value>: Hard set the value of a key, but don't print the key or the separator
+      --show-errors <?bool>: Print occurring errors
+      --disable-linewrap <?bool>: Whether to disable line wrap during the run
+      --hide-cursor <?bool>: Whether to hide the cursor during the run
+      --binary-prefix <enum>: Set the binary prefix to used
+      --percent-type <num>: Set the percentage output type
+      --percent-ndigits <num>: Set the number of digits to keep after the decimal point when formatting percentage numbers
+      --percent-color-green <color>: Set color used in green state of percentage bars and numbers
+      --percent-color-yellow <color>: Set color used in yellow state of percentage bars and numbers
+      --percent-color-red <color>: Set color used in red state of percentage bars and numbers
+      --bar-char-elapsed <str>: Set the character to use in elapsed part of percentage bars
+      --bar-char-total <str>: Set the character to use in total part of percentage bars
+      --bar-width <num>: Set the width of percentage bars, in number of characters
+      --bar-border <?bool>: Whether to show a border around percentage bars
+      --no-buffer <?bool>: Set if the stdout application buffer should be disabled
+      --size-ndigits <num>: Set the number of digits to keep after the decimal point when formatting sizes
+      --size-max-prefix <enum>: Set the largest binary prefix to use when formatting sizes
+      --temp-unit <enum>: Set the unit of the temperature
+      --temp-ndigits <num>: Set the number of digits to keep after the decimal point when printing temperature
+      --temp-color-green <color>: Set color used in green state of temperature values
+      --temp-color-yellow <color>: Set color used in yellow state of temperature values
+      --temp-color-red <color>: Set color used in red state of temperature values
+      --ts-version <?bool>: Whether to detect and display the version of terminal and shell
+
+Library path options:
+      --lib-pci <path>: Pciutils. Used for GPU output
+      --lib-vulkan <path>: Vulkan module & fallback for GPU output
+      --lib-wayland <path>: Better display performance and output in wayland sessions
+      --lib-xcb-randr <path>: X11 sessions for better display detection and faster WM detection
+      --lib-xcb <path>: X11 sessions for better display detection and faster WM detection
+      --lib-xrandr <path>: X11 sessions for better display detection and faster WM detection
+      --lib-x11 <path>: X11 sessions for better display detection and faster WM detection
+      --lib-drm <path>: Used for fast resolution and refresh rate detection
+      --lib-gio <path>: Needed for values that are only stored GSettings
+      --lib-dconf <path>: Needed for values that are only stored in DConf + Fallback for GSettings
+      --lib-dbus <path>: Bluetooth, Player & Media detection
+      --lib-xfconf <path>: Needed for XFWM theme and XFCE Terminal font
+      --lib-sqlite3 <path>: Needed for pkg & rpm package count
+      --lib-rpm <path>: Slower fallback for rpm package count
+      --lib-imagemagick <path>: Images in terminal using sixel or kitty graphics protocol
+      --lib-z <path>: Libz. Faster image output when using kitty graphics protocol
+      --lib-chafa <path>: Image output as ascii art
+      --lib-egl <path>: Needed by the OpenGL module for gl context creation
+      --lib-glx <path>: Needed by the OpenGL module for gl context creation
+      --lib-osmesa <path>: Needed by the OpenGL module for gl context creation
+      --lib-opencl <path>: OpenCL module
+      --lib-pulse <path>: Pulseaudio. Used for Sound detection
+      --lib-nm <path>: NetworkManager. Used for Wifi detection
+      --lib-freetype <path>: Used for Termux font detection
+      --lib-ddcutil <path>: Used for brightness detection of external displays
+
+Module specific options:
+      --title-fqdn <?bool>: Set if the title should use fully qualified domain name
+      --title-color-user <color>: Set color of the user name (left part)
+      --title-color-at <color>: Set color of the @ symbol (middle part)
+      --title-color-host <color>: Set color of the host name (right part)
+      --separator-string <str>: Set the string printed by the separator module
+      --os-file <path>: Set the additional file path which containing OS information
+      --disk-folders <path>: A colon (semicolon on Windows) separated list of folder paths for the disk output
+      --disk-show-regular <?bool>: Set if regular volume should be printed
+      --disk-show-external <?bool>: Set if external volume should be printed
+      --disk-show-hidden <?bool>: Set if hidden volumes should be printed
+      --disk-show-subvolumes <?bool>: Set if subvolumes should be printed
+      --disk-show-readonly <?bool>: Set if read only volumes should be printed
+      --disk-show-unknown <?bool>: Set if unknown (unable to detect sizes) volumes should be printed
+      --disk-use-available <?bool>: Use f_bavail (lpFreeBytesAvailableToCaller for Windows) instead of f_bfree to calculate used bytes
+      --diskio-detect-total <bool>: Detect total bytes instead of current rate
+      --diskio-name-prefix <str>: Show disks with given name prefix only
+      --physicaldisk-name-prefix <str>: Show disks with given name prefix only
+      --physicaldisk-temp <?bool>: Detect and display SSD temperature if supported
+      --bluetooth-show-disconnected <?bool>: Set if disconnected bluetooth devices should be printed
+      --packages-disabled <string>: A colon separated list of package managers to be disabled when detecting
+      --display-compact-type <enum>: Set if all displays should be printed in one line
+      --display-precise-refresh-rate <?bool>: Set if decimal refresh rates should not be rounded into integers when printing
+      --display-order <enum>: Set the order should be used when printing displays
+      --brightness-ddcci-sleep <num>: Set the sleep times (in ms) when sending DDC/CI requests
+      --sound-type <enum>: Set what type of sound devices should be printed
+      --battery-use-setup-api <?bool>: Set if "SetupAPI" should be used on Windows to detect battery info
+      --cpu-temp <?bool>: Detect and display CPU temperature if supported
+      --cpu-freq-ndigits <num>: Set the number of digits to keep after the decimal point when printing CPU frequency
+      --cpuusage-separate <?bool>: Display CPU usage per CPU logical core, instead of an average result
+      --de-slow-version-detection <?bool>: Set if DE version should be detected with slow operations
+      --gpu-temp <?bool>: Detect and display GPU temperature if supported
+      --gpu-driver-specific <?bool>: Use driver specific method to detect more detailed GPU information (memory usage, core count, etc)
+      --gpu-force-vulkan <?bool>: Force using vulkan to detect GPUs
+      --gpu-hide-type <enum>: Specify the type of GPUs should not be printed
+      --battery-temp <?bool>: Detect and display Battery temperature if supported
+      --localip-show-ipv4 <?bool>: Show IPv4 addresses in local ip module
+      --localip-show-ipv6 <?bool>: Show IPv6 addresses in local ip module
+      --localip-show-mac <?bool>: Show mac addresses in local ip module
+      --localip-show-loop <?bool>: Show loop back addresses (127.0.0.1) in local ip module
+      --localip-show-prefix-len <?bool>: Show network prefix length (/N) in local ip module
+      --localip-name-prefix <str>: Show interfaces with given interface name prefix only
+      --localip-default-route-only <?bool>: Show the interface that is used for default routing only
+      --localip-compact <?bool>: Show all IPs in one line
+      --netio-name-prefix <str>: Show interfaces with given name prefix only
+      --netio-default-route-only <?bool>: Show the interfac that is used for default routing only
+      --netio-detect-total <bool>: Detect total bytes instead of current rate
+      --publicip-timeout <num>: Time in milliseconds to wait for the public ip server to respond
+      --publicip-url <str>: The URL of public IP detection server to be used
+      --weather-location <str>: Set the location to be used
+      --weather-timeout <num>: Time in milliseconds to wait for the weather server to respond
+      --weather-output-format <str>: The output weather format to be used
+      --wm-detect-plugin <?bool>: Set if window manager plugin should be detected on supported platforms
+      --player-name <str>: The name of the player to use for module Media and Player
+      --opengl-library <enum>: Set the OpenGL context creation library to use
+      --command-shell <str>: Set the shell program to execute the command text
+      --command-key <str>: Set the module key to display
+      --command-text <str>: Set the command text to be executed
+      --colors-symbol <enum>: Set the symbol to be printed by Colors module
+      --colors-padding-left <num>: Set the number of white spaces to print before the symbol
+      --colors-block-width <num>: Set the block width in spaces
+      --colors-block-range-start <num>: Set the start range of colors in the blocks to print
+      --colors-block-range-end <num>: Set the end range of colors in the blocks to print
+
+General module options:
+      --<module>-format <format>: Set the format string to use for each specific module To see how a format string works, use "fastfetch -h format". To see help about a specific format string, use "fastfetch -h <module>-format"
+      --<module>-key <key>: Set the key to use for each specific module. For modules which print multiple lines, the string is parsed as a format string with the index as first character
+      --<module>-key-color <color>: Override the global "--color-keys" option for each specific module
+      --<module>-key-width <num>: Override the global "--key-width" option for each specific module
+      --<module>-percent-green <num>: Threshold of percentage colors Value less then percent-green will be shown in green
+      --<module>-percent-yellow <num>: Threshold of percentage colors Value greater than percent-green and less then yellow will be shown in yellow Value greater than percent-yellow will be shown in red
+      --<module>-temp-green <num>: Threshold of temperature colors Value less then temp-green will be shown in green
+      --<module>-temp-yellow <num>: Threshold of temperature colors Value greater than temp-green and less then yellow will be shown in yellow Value greater than temp-yellow will be shown in red
+
+
+Parsing is not case sensitive. E.g. "--lib-PCI" is equal to "--Lib-Pci"
+If a value starts with a ?, it is optional. An optional boolean value defaults to true if not specified.
+More detailed help messages for each options can be printed with "-h <option_without_dash_prefix>"
+All options can be made permanent with command "fastfetch <options> --gen-config"
