@@ -1,35 +1,48 @@
 #!/usr/bin/env bash
 #
-# ffetch - Display system info using fastfetch or neofetch
-#          Random configuration selection assumes configs are named:
-#            'config-*` in ~/.config/fastfetch/ or ~/.config/neofetch/
-#          Use fastfetch if found, otherwise use neofetch
+# ffetch/nfetch - Display system info using fastfetch or neofetch
+#        Random configuration selection assumes configs are named:
+#          'config-*` in ~/.config/fastfetch/ or ~/.config/neofetch/
+#        Use fastfetch if found, otherwise use neofetch
 #
 # Author: Ronald Joe Record <ronaldrecord@gmail.com>
 #
-# Usage: ffetch [-c config] [-r] [-u]
+# Usage: ffetch/nfetch [-c config] [-r] [-u]
 # Where:
 # 	-c 'config' specifies a configuration file to use
 # 	  'config' can be the full path or name of a configuration
 # 	-r indicates select configuration file randomly
 # 	-u displays this usage messge and exits
 
-FETCH="fastfetch"
-have_fetch=$(type -p fastfetch)
-[ "${have_fetch}" ] || {
-  have_fetch=$(type -p neofetch)
-  if [ "${have_fetch}" ]; then
-    FETCH="neofetch"
-  else
-    printf "\nCannot locate fastfetch. Exiting.\n\n"
-    exit 1
-  fi
-}
+me=$(basename "$0")
+have_fastfetch=$(type -p fastfetch)
+have_neofetch=$(type -p neofetch)
+if [ "${me}" == "nfetch" ]; then
+  FETCH="neofetch"
+  [ "${have_neofetch}" ] || {
+    if [ "${have_fastfetch}" ]; then
+      FETCH="fastfetch"
+    else
+      printf "\nCannot locate neofetch. Exiting.\n\n"
+      exit 1
+    fi
+  }
+else
+  FETCH="fastfetch"
+  [ "${have_fastfetch}" ] || {
+    if [ "${have_neofetch}" ]; then
+      FETCH="neofetch"
+    else
+      printf "\nCannot locate fastfetch. Exiting.\n\n"
+      exit 1
+    fi
+  }
+fi
 
 CONFDIR="${XDG_CONFIG_HOME:-${HOME}/.config}/${FETCH}"
 
 usage() {
-  printf "\nUsage: ffetch [-c config] [-r] [-u]"
+  printf "\nUsage: ${me} [-c config] [-r] [-u]"
   printf "\nWhere:"
   printf "\n\t-c 'config' specifies a configuration file to use"
   printf "\n\t   'config' can be the full path or name of a configuration"
