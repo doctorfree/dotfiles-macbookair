@@ -30,6 +30,11 @@
       "keyColor": "green"
     },
     {
+      "type": "physicaldisk",
+      "key": "├─",
+      "keyColor": "green"
+    },
+    {
       "type": "disk",
       "key": "├─",
       "keyColor": "green"
@@ -42,6 +47,33 @@
     {
       "type": "sound",
       "key": "├─",
+      "keyColor": "green"
+    },
+    {
+      "type": "chassis",
+      "key": "├─",
+      "keyColor": "green"
+    },
+    {
+      "type": "board",
+      "key": "├─",
+      "keyColor": "green",
+      "format": "{?1}{1}{?}{?2} ({2}){?}"
+    },
+    {
+      "type": "wifi",
+      "key": "├─",
+      "keyColor": "green",
+      "format": "{?1}{1}{?}{?6} - {6}{?}"
+    },
+    {
+      "type": "camera",
+      "key": "├─󰍹",
+      "keyColor": "green"
+    },
+    {
+      "type": "poweradapter",
+      "key": "├─",
       "keyColor": "green"
     },
     {
